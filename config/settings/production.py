@@ -4,7 +4,7 @@ Production settings for the portfolio project.
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "personal-portfolio-e90h.onrender.com",
