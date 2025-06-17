@@ -6,7 +6,9 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['your-domain.com']  # Change this to your actual domain
+ALLOWED_HOSTS = [
+    "personal-portfolio-e90h.onrender.com",
+]
 
 # Security settings
 SECURE_SSL_REDIRECT = True
