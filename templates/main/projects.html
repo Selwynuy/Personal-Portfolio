@@ -1,0 +1,24 @@
+<!-- Projects Section -->
+<section id="projects" style="background: var(--bg-main);">
+    <div class="container" data-aos="fade-up">
+      <h2 class="mb-4">My Projects</h2>
+      <div class="row">
+        {% for project in projects %}
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm" style="background: var(--card-bg); border-radius: 15px; border: 1px solid var(--accent2);">
+            <img
+              src="{{ project.image.url }}"
+              class="card-img-top"
+              alt="{{ project.title }}"
+              style="border-radius: 15px 15px 0 0; object-fit: cover; max-height: 220px;"
+            />
+            <div class="card-body">
+              <h5 class="card-title" style="color: var(--accent2);">{{ project.title }}</h5>
+              <p class="card-text">{{ project.description }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>

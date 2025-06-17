@@ -1,0 +1,23 @@
+<!-- Skills Section -->
+<section id="skills" style="background: var(--bg-main);">
+    <div class="container" data-aos="fade-up">
+      <h2 class="mb-4">Skills</h2>
+      <div class="skills-grid">
+        {% for category in skill_categories %}
+        <div class="skill-category p-3 mb-3 shadow-sm" style="background: var(--card-bg); border-radius: 12px;">
+          <h3 class="mb-3" style="color: var(--accent2);"><i class="fas fa-code me-2"></i> {{ category.name }}</h3>
+          {% for skill in category.skills.all %}
+          <div class="skill-item mb-2 d-flex align-items-center">
+            <i class="fab fa-{{ skill.icon }} me-2" style="color: var(--accent2);"></i> <span class="me-2">{{ skill.name }}</span>
+            <div class="progress flex-grow-1" style="height: 8px; background: rgba(0,0,0,0.08);">
+              <div class="progress-bar" style="width: {{ skill.proficiency }}%; background: var(--accent2); font-size: 0.7rem; text-align: right; padding-right: 5px; line-height: 8px;">
+                {{ skill.proficiency }}%
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>

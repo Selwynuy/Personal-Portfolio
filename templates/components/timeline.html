@@ -1,0 +1,38 @@
+<!-- Timeline Section -->
+<section id="timeline">
+    <div class="container" data-aos="fade-up">
+      <h2 class="mb-4">Timeline</h2>
+      <div class="timeline-filter mb-4" style="text-align:center; z-index:10;">
+        <button class="timeline-year-btn active" data-year="all">All</button>
+        {% for year in years %}
+          <button class="timeline-year-btn" data-year="{{ year.year }}">{{ year.year }}</button>
+        {% endfor %}
+      </div>
+      <div id="timeline-spinner" class="timeline-spinner" style="display:none; text-align:center; margin-bottom:1rem;">
+        <span class="spinner-border" style="color:var(--accent2);width:2rem;height:2rem;" role="status"></span>
+      </div>
+      <div class="timeline" id="timeline-events">
+        {% include 'components/timeline_events.html' with timeline_events=timeline_events %}
+      </div>
+    </div>
+  </section>
+<script>
+const filterBtns = document.querySelectorAll('.timeline-year-btn');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const year = this.getAttribute('data-year');
+    document.getElementById('timeline-spinner').style.display = 'block';
+    fetch(`/ajax/timeline/?year=${year}`)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('timeline-events').innerHTML = data.html;
+        document.getElementById('timeline-spinner').style.display = 'none';
+      })
+      .catch(() => {
+        document.getElementById('timeline-spinner').style.display = 'none';
+      });
+  });
+});
+</script>

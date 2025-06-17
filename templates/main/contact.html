@@ -1,0 +1,80 @@
+<!-- Contact Section -->
+<section id="contact" style="background: var(--bg-main);">
+    <div class="container" data-aos="fade-up">
+      <h2 class="mb-4">Contact Me</h2>
+      <p>
+        If you have any questions or would like to get in touch, feel free to send
+        me a message!
+      </p>
+  
+      <!-- Contact Form -->
+      <form action="{% url 'main:contact' %}" method="post" class="contact-form p-4 shadow-sm" style="background: var(--card-bg); border-radius: 15px;">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea
+            class="form-control"
+            id="message"
+            name="message"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent2 w-100">Send Message</button>
+      </form>
+    </div>
+</section>
+
+<!-- Notification Popup -->
+{% if messages %}
+<div class="notification-overlay" id="notificationOverlay">
+    {% for message in messages %}
+    <div class="notification-popup {% if message.tags %}{{ message.tags }}{% endif %}">
+        <div class="icon">
+            {% if message.tags == 'success' %}
+            <i class="fas fa-check-circle"></i>
+            {% else %}
+            <i class="fas fa-exclamation-circle"></i>
+            {% endif %}
+        </div>
+        <div class="message">{{ message }}</div>
+        <button class="close-btn" onclick="closeNotification()">Close</button>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+function closeNotification() {
+    const overlay = document.getElementById('notificationOverlay');
+    if (overlay) {
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            overlay.remove();
+        }, 300);
+    }
+}
+
+// Auto close after 5 seconds
+setTimeout(closeNotification, 5000);
+</script>
+{% endif %}

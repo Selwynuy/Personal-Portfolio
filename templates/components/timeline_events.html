@@ -1,0 +1,9 @@
+{% for event in timeline_events %}
+<div class="timeline-item card mb-4">
+  <h4 class="card-title" style="color: var(--accent2);">{{ event.title }}</h4>
+  <p class="card-text"><strong>Date:</strong> {{ event.date|date:"F d, Y" }}</p>
+  <p class="card-text">{{ event.description }}</p>
+</div>
+{% empty %}
+<p>No events for this year.</p>
+{% endfor %} 
